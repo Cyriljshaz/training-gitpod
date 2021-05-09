@@ -1,0 +1,10 @@
+{ parameter string ;
+  storage string ;
+  code { UNPAIR ; 
+         PUSH string "," ; 
+         CONCAT ; 
+         SWAP ; 
+         CONCAT ; 
+         NIL operation ; 
+         PAIR } }
+
