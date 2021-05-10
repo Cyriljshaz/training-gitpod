@@ -1,0 +1,43 @@
+{ parameter (or (or (int %add) (unit %reset)) (int %sub)) ;
+  storage (pair int address) ;
+  code { PUSH address "tz1gQcDxHLKgwqUjGNRYFV846RodVtWWWm67" ;
+         SWAP ;
+         UNPAIR ;
+         IF_LEFT
+           { IF_LEFT
+               { DIG 2 ;
+                 DROP ;
+                 SWAP ;
+                 UNPAIR ;
+                 SENDER ;
+                 DIG 2 ;
+                 COMPARE ;
+                 EQ ;
+                 IF { DROP 2 ; PUSH string "Error: Sender cannot add twice in a row!" ; FAILWITH }
+                    { PUSH int 10 ;
+                      DUP 3 ;
+                      COMPARE ;
+                      GE ;
+                      IF { DROP 2 ;
+                           PUSH string "Error: Only amounts 0 <= 10 can be added!" ;
+                           FAILWITH }
+                         { SENDER ; DUG 2 ; ADD ; PAIR } } }
+               { DROP ;
+                 CDR ;
+                 SWAP ;
+                 SENDER ;
+                 COMPARE ;
+                 NEQ ;
+                 IF { DROP ; PUSH string "Only the owner can reset the amount!" ; FAILWITH }
+                    { PUSH int 0 ; PAIR } } }
+           { SWAP ;
+             UNPAIR ;
+             DIG 3 ;
+             SENDER ;
+             COMPARE ;
+             NEQ ;
+             IF { DROP 3 ; PUSH string "Only the owner can substract!" ; FAILWITH }
+                { SWAP ; DUG 2 ; SUB ; PAIR } } ;
+         NIL operation ;
+         PAIR } }
+
