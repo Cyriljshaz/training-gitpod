@@ -10,7 +10,7 @@ C’est un smart contrat qui prend en paramètre une chaîne. Il faut penser à 
 
 Allez ensuite voir le résultat sur https://better-call.dev/
 
-# Sol
+# Solution
 
 ```
     tezos-client --wait none transfer 5 from alice to KT1Bdwq55vVHsmRqXy79GHLcgfb5XPUPN5Wt --arg '"Germán"' --burn-cap 0.1

@@ -1,0 +1,15 @@
+{ parameter (pair int int) ;
+  storage (pair int int) ;
+  code { UNPAIR ;
+         UNPAIR ;
+         DIG 2 ;
+         UNPAIR ;
+         DIG 2 ;
+         ADD ;
+         DUG 2 ;
+         ADD ;
+         SWAP ;
+         PAIR ;
+         NIL operation ;
+         PAIR } }
+
