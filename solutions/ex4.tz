@@ -1,0 +1,17 @@
+{ parameter string ;
+  storage (pair int string) ;
+  code { UNPAIR ;
+         SWAP ;
+         UNPAIR ;
+         PUSH int 1 ;
+         ADD ;
+         DIG 2 ;
+         PUSH string "," ;
+         CONCAT ;
+         DIG 2 ;
+         CONCAT ;
+         SWAP ;
+         PAIR ;
+         NIL operation ;
+         PAIR } }
+
