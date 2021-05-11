@@ -1,0 +1,59 @@
+Node is bootstrapped.
+This simulation failed:
+  Manager signed operations:
+    From: tz1gQcDxHLKgwqUjGNRYFV846RodVtWWWm67
+    Fee to the baker: ꜩ0
+    Expected counter: 244499
+    Gas limit: 1040000
+    Storage limit: 60000 bytes
+    Transaction:
+      Amount: ꜩ0
+      From: tz1gQcDxHLKgwqUjGNRYFV846RodVtWWWm67
+      To: KT1Vdg25SgTAJMdg47fnvH3oFz222YHoxhgN
+      Parameter: 100000000
+      This operation FAILED.
+
+Runtime error in contract KT1Vdg25SgTAJMdg47fnvH3oFz222YHoxhgN:
+  01: { parameter mutez ;
+  02:   storage (pair mutez timestamp) ;
+  03:   code { PUSH address "tz1gQcDxHLKgwqUjGNRYFV846RodVtWWWm67" ;
+  04:          SWAP ;
+  05:          UNPAIR ;
+  06:          SWAP ;
+  07:          UNPAIR ;
+  08:          DUP 4 ;
+  09:          SENDER ;
+  10:          COMPARE ;
+  11:          NEQ ;
+  12:          IF { DROP 4 ; PUSH string "Not owner" ; FAILWITH }
+  13:             { DUP 3 ;
+  14:               COMPARE ;
+  15:               GT ;
+  16:               IF { DROP 3 ; PUSH string "Too much!" ; FAILWITH }
+  17:                  { NOW ;
+  18:                    PUSH int 120 ;
+  19:                    DIG 2 ;
+  20:                    ADD ;
+  21:                    COMPARE ;
+  22:                    LT ;
+  23:                    IF { DROP 2 ; PUSH string "Too soon!" ; FAILWITH }
+  24:                       { SWAP ;
+  25:                         CONTRACT unit ;
+  26:                         IF_NONE { PUSH string "Contract not found." ; FAILWITH } {} ;
+  27:                         SWAP ;
+  28:                         DUP ;
+  29:                         DUG 2 ;
+  30:                         UNIT ;
+  31:                         TRANSFER_TOKENS ;
+  32:                         NOW ;
+  33:                         DIG 2 ;
+  34:                         PAIR ;
+  35:                         NIL operation ;
+  36:                         DIG 2 ;
+  37:                         CONS ;
+  38:                         PAIR } } } } }
+At line 23 characters 59 to 67,
+script reached FAILWITH instruction
+with "Too soon!"
+Fatal error:
+  transfer simulation failed

@@ -1,0 +1,39 @@
+{ parameter mutez ;
+  storage (pair mutez timestamp) ;
+  code { PUSH address "tz1gQcDxHLKgwqUjGNRYFV846RodVtWWWm67" ;
+         SWAP ;
+         UNPAIR ;
+         SWAP ;
+         UNPAIR ;
+         DUP 4 ;
+         SENDER ;
+         COMPARE ;
+         NEQ ;
+         IF { DROP 4 ; PUSH string "Not owner" ; FAILWITH }
+            { DUP 3 ;
+              COMPARE ;
+              GT ;
+              IF { DROP 3 ; PUSH string "Too much!" ; FAILWITH }
+                 { NOW ;
+                   PUSH int 120 ;
+                   DIG 2 ;
+                   ADD ;
+                   COMPARE ;
+                   LT ;
+                   IF { DROP 2 ; PUSH string "Too soon!" ; FAILWITH }
+                      { SWAP ;
+                        CONTRACT unit ;
+                        IF_NONE { PUSH string "Contract not found." ; FAILWITH } {} ;
+                        SWAP ;
+                        DUP ;
+                        DUG 2 ;
+                        UNIT ;
+                        TRANSFER_TOKENS ;
+                        NOW ;
+                        DIG 2 ;
+                        PAIR ;
+                        NIL operation ;
+                        DIG 2 ;
+                        CONS ;
+                        PAIR } } } } }
+
