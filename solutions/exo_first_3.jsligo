@@ -1,0 +1,8 @@
+type storage = [string,int];
+
+let main = ([param, oldStorage] : [string, storage]) : [list<operation>, storage] => {
+    let inc = oldStorage[1] + 1 ;
+    let old_msg : string = oldStorage[0]; 
+    let new_msg = old_msg + ", " + param;
+    return [list([]) as list<operation>, [new_msg, inc]];
+}
