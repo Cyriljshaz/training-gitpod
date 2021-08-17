@@ -1,0 +1,15 @@
+{ parameter string ;
+  storage string ;
+  code { LEFT (pair (list operation) string) ;
+         LOOP_LEFT
+           { DUP ;
+             CAR ;
+             PUSH string "," ;
+             DIG 2 ;
+             CDR ;
+             CONCAT ;
+             CONCAT ;
+             NIL operation ;
+             PAIR ;
+             RIGHT (pair string string) } } }
+
