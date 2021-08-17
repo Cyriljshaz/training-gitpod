@@ -1,0 +1,27 @@
+type storage = [int, string, timestamp, address];
+type action = ["Enroll"] | ["Edit"];
+
+ 
+
+let enroll = ([oldStorage, name, enrolldate, uniqueaddress]: [storage, string, timestamp, address]) : storage => [oldStorage[0] + 1, name, enrolldate, uniqueaddress];
+
+
+
+let editname  = ([oldStorage, newname]: [storage, string]) : storage => {
+    let stg = " " + oldStorage[1] + newname;
+    return [oldStorage[0], stg, oldStorage[2], oldStorage[3]];
+};
+
+ 
+
+let main = ([p, s] : [action, storage]) : [list<operation>, storage] => {
+    let name = "Vijay";
+    let enrolldate = Tezos.now;
+    let uniqueaddress = Tezos.sender;
+    let newname = " Sugali"
+   let stor = match(p, {
+      Enroll : () => enroll(s, name, enrolldate, uniqueaddress),
+      Edit : () => editname(s, newname)
+   });
+   return [list([]) as list<operation>, stor];
+}

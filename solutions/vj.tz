@@ -1,0 +1,81 @@
+{ parameter (or (unit %edit) (unit %enroll)) ;
+  storage (pair (pair int string) (pair timestamp address)) ;
+  code { LEFT (pair (list operation) (pair (pair int string) (pair timestamp address))) ;
+         LOOP_LEFT
+           { DUP ;
+             CDR ;
+             NOW ;
+             SENDER ;
+             DIG 3 ;
+             CAR ;
+             IF_LEFT
+               { DROP 3 ;
+                 PUSH string " Sugali" ;
+                 SWAP ;
+                 PAIR ;
+                 LEFT (pair (pair int string) (pair timestamp address)) ;
+                 LOOP_LEFT
+                   { DUP ;
+                     CAR ;
+                     DUP ;
+                     CDR ;
+                     CDR ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CDR ;
+                     CAR ;
+                     PAIR ;
+                     DIG 2 ;
+                     CDR ;
+                     DUP 3 ;
+                     CAR ;
+                     CDR ;
+                     PUSH string " " ;
+                     CONCAT ;
+                     CONCAT ;
+                     DIG 2 ;
+                     CAR ;
+                     CAR ;
+                     PAIR ;
+                     PAIR ;
+                     RIGHT (pair (pair (pair int string) (pair timestamp address)) string) } }
+               { DROP ;
+                 SWAP ;
+                 PAIR ;
+                 PUSH string "Vijay" ;
+                 DIG 2 ;
+                 PAIR ;
+                 PAIR ;
+                 LEFT (pair (pair int string) (pair timestamp address)) ;
+                 LOOP_LEFT
+                   { DUP ;
+                     CDR ;
+                     CDR ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CDR ;
+                     CAR ;
+                     PAIR ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     CAR ;
+                     CDR ;
+                     PUSH int 1 ;
+                     DIG 3 ;
+                     CAR ;
+                     CAR ;
+                     CAR ;
+                     CAR ;
+                     ADD ;
+                     PAIR ;
+                     PAIR ;
+                     RIGHT
+                       (pair (pair (pair (pair int string) (pair timestamp address)) string)
+                             (pair timestamp address)) } } ;
+             NIL operation ;
+             PAIR ;
+             RIGHT (pair (or unit unit) (pair (pair int string) (pair timestamp address))) } } }
+
