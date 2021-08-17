@@ -1,0 +1,6 @@
+{ parameter int ;
+  storage int ;
+  code { LEFT (pair (list operation) int) ;
+         LOOP_LEFT
+           { DUP ; CAR ; SWAP ; CDR ; ADD ; NIL operation ; PAIR ; RIGHT (pair int int) } } }
+
