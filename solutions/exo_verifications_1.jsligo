@@ -1,0 +1,44 @@
+type action =
+| ["Increment", int]
+| ["Decrement", int]
+| ["Reset"];
+
+type storage = [int, address, address];
+
+let increment = ([oldStorage, number] : [storage, int]) : storage => {
+    let [oldNumber, oldCaller, owner] = oldStorage;
+    if (Tezos.sender == oldCaller) {
+        return failwith("Same person twice!") as storage;
+    } else if (number < 0 || number >= 10) {
+        return failwith("Out of range!") as storage;
+    } else {
+        return [oldNumber + number, Tezos.sender, owner];
+    }
+};
+
+let decrement = ([oldStorage, number] : [storage, int]) : storage => {
+    let [oldNumber, oldCaller, owner] = oldStorage;
+    if (Tezos.sender != owner) {
+        return failwith("Not the owner") as storage;
+    } else {
+        return [oldNumber - number, oldCaller, owner];
+    }
+};
+
+let reset = (oldStorage : storage) : storage => {
+    let [_oldNumber, oldCaller, owner] = oldStorage;
+    if (Tezos.sender != owner) {
+        return failwith("Not the owner") as storage;
+    } else {
+        return [0, oldCaller, owner];
+    }
+};
+
+let main = ([p, s]: [action, storage]) : [list<operation>, storage] => {
+    let newStorage = match(p, {
+        Increment : (number : int) => increment(s, number),
+        Decrement : (number : int) => decrement(s, number),
+        Reset : () => reset(s)
+    });
+    return [list([]) as list<operation>, newStorage];
+};

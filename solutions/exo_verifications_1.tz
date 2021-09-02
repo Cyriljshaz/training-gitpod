@@ -1,0 +1,75 @@
+{ parameter (or (or (int %decrement) (int %increment)) (unit %reset)) ;
+  storage (pair (pair int address) address) ;
+  code { LEFT (pair (list operation) (pair (pair int address) address)) ;
+         LOOP_LEFT
+           { UNPAIR ;
+             IF_LEFT
+               { IF_LEFT
+                   { SWAP ;
+                     PAIR ;
+                     LEFT (pair (pair int address) address) ;
+                     LOOP_LEFT
+                       { DUP ;
+                         CAR ;
+                         UNPAIR ;
+                         UNPAIR ;
+                         DUP 3 ;
+                         SENDER ;
+                         COMPARE ;
+                         NEQ ;
+                         IF { DROP 4 ; PUSH string "Not the owner" ; FAILWITH }
+                            { DUG 2 ;
+                              DIG 3 ;
+                              CDR ;
+                              DIG 3 ;
+                              SUB ;
+                              PAIR ;
+                              PAIR ;
+                              RIGHT (pair (pair (pair int address) address) int) } } }
+                   { SWAP ;
+                     PAIR ;
+                     LEFT (pair (pair int address) address) ;
+                     LOOP_LEFT
+                       { UNPAIR ;
+                         UNPAIR ;
+                         UNPAIR ;
+                         SWAP ;
+                         SENDER ;
+                         COMPARE ;
+                         EQ ;
+                         IF { DROP 3 ; PUSH string "Same person twice!" ; FAILWITH }
+                            { PUSH int 10 ;
+                              DUP 4 ;
+                              COMPARE ;
+                              GE ;
+                              PUSH int 0 ;
+                              DUP 5 ;
+                              COMPARE ;
+                              LT ;
+                              OR ;
+                              IF { DROP 3 ; PUSH string "Out of range!" ; FAILWITH }
+                                 { SWAP ;
+                                   SENDER ;
+                                   DIG 3 ;
+                                   DIG 3 ;
+                                   ADD ;
+                                   PAIR ;
+                                   PAIR ;
+                                   RIGHT (pair (pair (pair int address) address) int) } } } } }
+               { DROP ;
+                 LEFT (pair (pair int address) address) ;
+                 LOOP_LEFT
+                   { UNPAIR ;
+                     CDR ;
+                     SWAP ;
+                     DUP ;
+                     DUG 2 ;
+                     SENDER ;
+                     COMPARE ;
+                     NEQ ;
+                     IF { DROP 2 ; PUSH string "Not the owner" ; FAILWITH }
+                        { PUSH int 0 ; PAIR ; PAIR ; RIGHT (pair (pair int address) address) } } } ;
+             NIL operation ;
+             PAIR ;
+             RIGHT (pair (or (or int int) unit) (pair (pair int address) address)) } } }
+
