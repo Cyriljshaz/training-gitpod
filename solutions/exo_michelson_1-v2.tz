@@ -1,0 +1,17 @@
+parameter (pair int int) ;
+storage int ;               
+code {  UNPAIR ;             # storage; parameter 
+        # we clear the contract storage, as we are not interested in it
+        SWAP ;               # parameter; storage
+        DROP ;               # parameter
+        UNPAIR ;             # b; a
+        SWAP ;               # a; b
+        PUSH int 2 ;         # a; b; 2
+        MUL ;                # a; 2b
+        DUP 2;               # a; 2b; a
+        PUSH int 3 ;         # a; 2b; a; 3
+        MUL ;                # a; 2b; 3a       
+        ADD ;                # a; 2b + 3a
+        MUL ;                # a * (2b + 3a)
+        NIL operation ;      # a * (2b + 3a); []
+        PAIR }               # ([], a * (2b + 3a))

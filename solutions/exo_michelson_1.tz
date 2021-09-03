@@ -1,0 +1,19 @@
+parameter (pair int int) ;
+storage int ;               
+code { UNPAIR ;             # storage ; parameter 
+       # we clear the contract storage, as we are not interested in it
+       SWAP ;               # parameter ; storage
+       DROP ;               # parameter
+       UNPAIR ;             # b ; a
+       DUP ;                # b; a; a
+       PUSH int 3 ;         # b; a; a; 3
+       SWAP ;               # b; a; 3; a 
+       # We use DIP to navigate the stack and multiply in place
+       DIP 1 MUL ;          # b; 3a ; a
+       PUSH int 2;          # b; 3a; a; 2
+       DUG 2 ;              # b; 2; 3a; a
+       DIP 2 MUL ;          # 2b; 3a; a      
+       DIP 1 ADD ;          # 2b + 3a; a
+       MUL ;                # (2b + 3a) * a       
+       NIL operation ;      # (2b + 3a) * a; []
+       PAIR }               # ([], (2b+ 3a) *a) 
