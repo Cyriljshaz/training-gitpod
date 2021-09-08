@@ -1,11 +1,20 @@
 const assert = require('assert');
-const { deploy } = require('@completium/completium-cli');
+const { deploy, setQuiet } = require('@completium/completium-cli');
 
-const test = async () => {
-    const [add_number, _] = await deploy('add_number.arl');
+setQuiet(true);
+
+let add_number;
+
+describe("Test add_number", async () => {
+  it("Deploy contract", async () => {
+    [add_number, _] = await deploy('add_number.arl');
+  });
+  it("Call default entry", async () => {
     await add_number.default({ arg : { quantity : 2 }});
+  });
+  it("Check storage value", async () => {
     const storage = await add_number.getStorage();
     const count = storage.toNumber();
     assert(count == 4, "Invalid counter value");
-}
-test();
+  });
+});
