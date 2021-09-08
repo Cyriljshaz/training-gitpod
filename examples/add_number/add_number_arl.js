@@ -9,8 +9,8 @@ describe("Test add_number", async () => {
   it("Deploy contract", async () => {
     [add_number, _] = await deploy('add_number.arl');
   });
-  it("Call default entry", async () => {
-    await add_number.default({ arg : { quantity : 2 }});
+  it("Call 'increment' entry", async () => {
+    await add_number.increment({ arg : { quantity : 2 }});
   });
   it("Check storage value", async () => {
     const storage = await add_number.getStorage();
