@@ -7,5 +7,7 @@ const test = async () => {
     await charity.donate({ as : "alice", amount : "10tz" });
     await charity.donate({ as : "bob", amount : "5tz" });
     await charity.collect({ as : "alice", arg : { requestedAmount : "15tz" }});
+    const balance = await charity.getBalance()
+    assert(balance.toNumber() == 0)
 }
 test();
