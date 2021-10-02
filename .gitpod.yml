@@ -32,7 +32,6 @@ tasks:
       # gp or code won't work until the IDE GUI is ready
       until gp open ${WelcomeFile} ; do sleep 1; done
       code --install-extension /home/.2HzpexT7tKMixL.vsix ;
-      completium-cli mockup init ;
       npm link '@completium/completium-cli' ;
       clear
 #
