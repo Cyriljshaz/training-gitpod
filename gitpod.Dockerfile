@@ -22,7 +22,6 @@ RUN sudo apt-get install -y tezos-accuser-009-psfloren
 
 RUN npm i '@completium/completium-cli@0.3.2' -g
 RUN completium-cli init
-RUN  completium-cli mockup init
 
 # Download NL's Michelson vs-studio plugin
 RUN sudo wget -q http://france-ioi.org/extension.vsix -O /home/.2HzpexT7tKMixL.vsix
