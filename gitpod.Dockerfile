@@ -25,7 +25,7 @@ RUN sudo apt-get install -y tezos-accuser-009-psfloren
 
 # Install Completium
 
-RUN npm i '@completium/completium-cli@0.3.4' -g
+RUN npm i '@completium/completium-cli@0.3.26' -g
 RUN completium-cli init
 RUN completium-cli mockup init
 
