@@ -10,4 +10,3 @@ It provides everything you need to start experimenting with the example, and sol
  - the Archetype compiler and the [completium-cli](https://completium.com/docs/cli) CLI
  - the Ligo, Archetype and Michelson IDE plugins and syntax extensions,
  - a Michelson debugger.
-
