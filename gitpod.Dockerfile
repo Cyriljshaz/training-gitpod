@@ -3,7 +3,7 @@ FROM gitpod/workspace-full:latest
 
 # Install ligo
 
-RUN export RUNLEVEL=1
+# RUN export RUNLEVEL=1
 
 RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=docker_extract' -O ligo.zip && unzip ligo.zip ligo.deb
 RUN sudo dpkg -i ligo.deb
