@@ -14,6 +14,8 @@ RUN sudo touch /.containerenv
 RUN sudo apt-get install -y tezos-client
 RUN sudo apt-get install -y tezos-node
 
+
+
 RUN sudo apt-get install -y tezos-baker-012-psithaca
 RUN sudo apt-get install -y tezos-accuser-012-psithaca
 
