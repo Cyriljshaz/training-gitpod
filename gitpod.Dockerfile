@@ -15,13 +15,8 @@ RUN sudo apt-get install -y tezos-client
 RUN sudo apt-get install -y tezos-node
 
 
-RUN sudo apt-get install -y tezos-baker-009-psfloren
-RUN sudo apt-get install -y tezos-endorser-009-psfloren
-RUN sudo apt-get install -y tezos-accuser-009-psfloren
-
-#RUN sudo apt-get install -y tezos-baker-008-ptedo2zk
-#RUN sudo apt-get install -y tezos-endorser-008-ptedo2zk
-#RUN sudo apt-get install -y tezos-accuser-008-ptedo2zk
+RUN sudo apt-get install -y tezos-baker-012-Psithaca
+RUN sudo apt-get install -y tezos-accuser-012-Psithaca
 
 # Install Completium
 
