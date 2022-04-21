@@ -9,12 +9,14 @@ RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=doc
 RUN chmod +x ./ligo
 RUN sudo mv ./ligo /usr/local/bin
 RUN sudo rm ./ligo.zip
-RUN sudo add-apt-repository ppa:serokell/tezos && sudo apt-get update
-RUN sudo apt-get install -y apt-transport-https
-RUN sudo touch /.containerenv
-RUN sudo apt-get install -y tezos-client
 
-# Install Completium
+# Install tezos-client
+
+RUN sudo add-apt-repository ppa:serokell/tezos && sudo apt-get update
+RUN sudo touch /.containerenv
+RUN sudo apt-get install -y apt-transport-https tezos-client
+
+# Install completium-cli
 
 RUN npm i '@completium/completium-cli@0.3.35' -g
 RUN completium-cli init
