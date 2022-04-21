@@ -3,11 +3,12 @@ FROM gitpod/workspace-full:latest
 
 # Install ligo
 
-#RUN export RUNLEVEL=1
+RUN export RUNLEVEL=1
 
-#RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=docker_extract' -O ligo.zip && unzip ligo.zip ligo
-#RUN chmod +x ./ligo
-#RUN sudo cp ./ligo /usr/local/bin
+RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=docker_extract' -O ligo.zip && unzip ligo.zip ligo
+RUN chmod +x ./ligo
+RUN sudo mv ./ligo /usr/local/bin
+RUN sudo rm ./ligo.zip
 RUN sudo add-apt-repository ppa:serokell/tezos && sudo apt-get update
 RUN sudo apt-get install -y apt-transport-https
 RUN sudo touch /.containerenv
