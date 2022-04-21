@@ -5,10 +5,9 @@ FROM gitpod/workspace-full:latest
 
 RUN export RUNLEVEL=1
 
-RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=docker_extract' -O ligo.zip && unzip ligo.zip ligo
-RUN chmod +x ./ligo
-RUN sudo mv ./ligo /usr/local/bin
-RUN sudo rm ./ligo.zip
+RUN wget 'https://gitlab.com/ligolang/ligo/-/jobs/artifacts/dev/download?job=docker_extract' -O ligo.zip && unzip ligo.zip ligo.deb
+RUN sudo dpkg -i ligo.deb
+RUN sudo rm ./ligo.zip ligo.deb
 
 # Install tezos-client
 
