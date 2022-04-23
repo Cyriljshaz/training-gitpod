@@ -9,6 +9,13 @@ FROM gitpod/workspace-full:latest
 #RUN sudo dpkg -i ligo.deb
 #RUN sudo rm ./ligo.zip ligo.deb
 
+FROM ligolang/ligo:0.40.0 as ligo
+FROM gitpod/workspace-full:latest
+
+RUN npm i -g @esy-nightly/esy
+COPY --from=ligo /root/ligo /usr/local/bin/ligo
+
+
 # Install tezos-client
 
 RUN sudo add-apt-repository ppa:serokell/tezos && sudo apt-get update
