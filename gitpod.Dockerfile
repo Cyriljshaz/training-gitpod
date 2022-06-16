@@ -24,12 +24,6 @@ RUN sudo apt-get install -y apt-transport-https tezos-client
 
 # Install completium-cli
 
-RUN sudo add-apt-repository ppa:serokell/tezos && sudo apt-get update
-RUN sudo touch /.containerenv
-RUN sudo apt-get install -y apt-transport-https tezos-client
-
-# Install completium-cli
-
 RUN npm i '@completium/completium-cli@0.4.0' -g
 RUN completium-cli init
 RUN completium-cli mockup init
