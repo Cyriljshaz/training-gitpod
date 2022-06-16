@@ -7,7 +7,7 @@ asset visitor {
 }
 
 entry register(l : string, n : string) {
- visitor.addupdate(l, { name = n });
+ visitor.add_update(l, { name = n });
 }
 
 entry visit(l :string) {
