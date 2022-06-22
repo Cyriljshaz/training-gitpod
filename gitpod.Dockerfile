@@ -24,7 +24,7 @@ RUN sudo apt-get install -y apt-transport-https tezos-client
 
 # Install completium-cli
 
-RUN npm i '@completium/completium-cli@0.3.35' -g
+RUN npm i '@completium/completium-cli@0.4.1' -g
 RUN completium-cli init
 RUN completium-cli mockup init
 
